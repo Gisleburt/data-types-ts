@@ -148,4 +148,14 @@ export class LinkedList<T> {
       }
     }
   }
+
+  public take(): Maybe<T> {
+    const takenValue = this.head?.value;
+    this.head = this.head?.next();
+    return takenValue;
+  }
+
+  public peek(): Maybe<T> {
+    return this.head?.value;
+  }
 }

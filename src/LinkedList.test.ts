@@ -129,4 +129,28 @@ describe('LinkedList', () => {
     linkedList.removeAll('O');
     expect(Array.from(linkedList.iter()).join('')).to.equal('E');
   });
+
+  it('should allow you to take the first value', () => {
+    const linkedList = new LinkedList();
+    linkedList.prepend(3);
+    linkedList.prepend(2);
+    linkedList.prepend(1);
+
+    expect(linkedList.take()).to.equal(1);
+    expect(linkedList.take()).to.equal(2);
+    expect(linkedList.take()).to.equal(3);
+    expect(linkedList.take()).to.equal(undefined);
+  })
+
+  it('should allow you to peek at the first value', () => {
+    const linkedList = new LinkedList();
+    expect(linkedList.peek()).to.equal(undefined);
+
+    linkedList.prepend(3);
+    linkedList.prepend(2);
+    linkedList.prepend(1);
+
+    expect(linkedList.peek()).to.equal(1);
+    expect(linkedList.peek()).to.equal(1);
+  })
 });
