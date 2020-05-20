@@ -25,6 +25,8 @@ describe('Stack', () => {
 
     expect(stack.peek()).to.equal(1);
     expect(stack.peek()).to.equal(1);
+    expect(stack.pop()).to.equal(1);
+    expect(stack.peek()).to.equal(2);
   });
 
   it('should provide an iterator for itself', () => {
