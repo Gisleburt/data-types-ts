@@ -1,19 +1,18 @@
-import {LinkedList} from './LinkedList';
 import {Maybe} from './Maybe';
 
 export class Stack<T> {
-  private list: LinkedList<T> = new LinkedList<T>();
+  private list: Array<T> = [];
 
   push(value: T) {
-    this.list.prepend(value);
+    this.list.push(value);
   }
 
   pop(): Maybe<T> {
-    return this.list.take();
+    return this.list.pop();
   }
 
   peek(): Maybe<T> {
-    return this.list.peek();
+    return this.list[this.list.length - 1];
   }
 
   *iter(): IterableIterator<T> {
