@@ -41,4 +41,24 @@ describe('Stack', () => {
     expect(iter.next().value).to.equal(3);
     expect(iter.next().done).to.equal(true);
   });
+
+  it('should stack falsey values', () => {
+    const booleanStack = new Stack();
+    booleanStack.push(true);
+    booleanStack.push(false);
+
+    const booleanIter = booleanStack.iter();
+    expect(booleanIter.next().value).to.equal(false);
+    expect(booleanIter.next().value).to.equal(true);
+    expect(booleanIter.next().done).to.equal(true);
+
+    const numberStack = new Stack();
+    numberStack.push(1);
+    numberStack.push(0);
+
+    const numberIter = numberStack.iter();
+    expect(numberIter.next().value).to.equal(0);
+    expect(numberIter.next().value).to.equal(1);
+    expect(numberIter.next().done).to.equal(true);
+  });
 });

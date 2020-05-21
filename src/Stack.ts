@@ -16,7 +16,7 @@ export class Stack<T> {
   }
 
   *iter(): IterableIterator<T> {
-    while(this.peek()) {
+    while(this.peek() !== undefined) {
       yield this.pop()!;
     }
   }

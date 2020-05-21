@@ -16,7 +16,7 @@ export class Queue<T> {
   }
 
   *iter(): IterableIterator<T> {
-    while(this.peek()) {
+    while(this.peek() !== undefined) {
       yield this.dequeue()!;
     }
   }

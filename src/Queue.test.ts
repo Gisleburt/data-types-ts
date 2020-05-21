@@ -1,5 +1,6 @@
 import {Queue} from './Queue';
 import {expect} from "chai";
+import {Stack} from './Stack';
 
 describe('Queue', () => {
   it('should allow you to enqueue and dequeue', () => {
@@ -39,5 +40,25 @@ describe('Queue', () => {
     expect(iter.next().value).to.equal(2);
     expect(iter.next().value).to.equal(3);
     expect(iter.next().done).to.equal(true);
+  });
+
+  it('should queue falsey values', () => {
+    const booleanQueue = new Queue();
+    booleanQueue.enqueue(true);
+    booleanQueue.enqueue(false);
+
+    const booleanIter = booleanQueue.iter();
+    expect(booleanIter.next().value).to.equal(true);
+    expect(booleanIter.next().value).to.equal(false);
+    expect(booleanIter.next().done).to.equal(true);
+
+    const numberQueue = new Queue();
+    numberQueue.enqueue(1);
+    numberQueue.enqueue(0);
+
+    const numberIter = numberQueue.iter();
+    expect(numberIter.next().value).to.equal(1);
+    expect(numberIter.next().value).to.equal(0);
+    expect(numberIter.next().done).to.equal(true);
   });
 });
