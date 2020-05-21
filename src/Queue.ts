@@ -3,11 +3,11 @@ import {Maybe} from './Maybe';
 export class Queue<T> {
   private list: Array<T> = [];
 
-  enque(value: T) {
+  enqueue(value: T) {
     this.list.push(value);
   }
 
-  deque(): Maybe<T> {
+  dequeue(): Maybe<T> {
     return this.list.shift();
   }
 
@@ -17,7 +17,7 @@ export class Queue<T> {
 
   *iter(): IterableIterator<T> {
     while(this.peek()) {
-      yield this.deque()!;
+      yield this.dequeue()!;
     }
   }
 }
