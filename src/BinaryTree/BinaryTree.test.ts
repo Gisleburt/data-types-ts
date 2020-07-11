@@ -1,5 +1,5 @@
-import { BinaryTree } from './BinaryTree';
-import { expect } from 'chai';
+import {BinaryTree} from './BinaryTree';
+import {expect} from 'chai';
 
 describe('BinaryTree', () => {
   it('should add new items', () => {
