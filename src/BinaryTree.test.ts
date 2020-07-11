@@ -84,4 +84,60 @@ describe('BinaryTree', () => {
     expect(binaryTree.containsDepthFirst(7)).to.equal(true);
     expect(binaryTree.containsDepthFirst(8)).to.equal(false);
   });
+
+  it('should be sortable', () => {
+    //     4
+    //  2     6
+    // 1 3   5 7
+
+    const binaryTree = new BinaryTree<number>();
+    binaryTree.add(3, 2, 4, 6, 1, 7, 5);
+    const sortedTree = binaryTree.optimise((a, b) => (a - b));
+
+    const iter = sortedTree.breadthFirstIter();
+    expect(iter.next().value).to.equal(4);
+    expect(iter.next().value).to.equal(2);
+    expect(iter.next().value).to.equal(6);
+    expect(iter.next().value).to.equal(1);
+    expect(iter.next().value).to.equal(3);
+    expect(iter.next().value).to.equal(5);
+    expect(iter.next().value).to.equal(7);
+    expect(iter.next().done).to.equal(true);
+  });
+
+  it('should be able to find things once sorted', () => {
+    const binaryTree = new BinaryTree<number>();
+    binaryTree.add(3, 2, 4, 6, 1, 7, 5);
+    const sortedTree = binaryTree.optimise((a, b) => (a - b));
+
+    expect(sortedTree.contains(1)).to.be.true;
+    expect(sortedTree.contains(2)).to.be.true;
+    expect(sortedTree.contains(3)).to.be.true;
+    expect(sortedTree.contains(4)).to.be.true;
+    expect(sortedTree.contains(5)).to.be.true;
+    expect(sortedTree.contains(6)).to.be.true;
+    expect(sortedTree.contains(7)).to.be.true;
+    expect(sortedTree.contains(8)).to.be.false;
+  });
+
+  it('should be remain sorted even if you add another number', () => {
+    //     4
+    //  2     6
+    // 1 3   5 7
+
+    const binaryTree = new BinaryTree<number>();
+    const sortedTree = binaryTree.optimise((a, b) => (a - b));
+    sortedTree.add(3, 2, 4, 6);
+    sortedTree.add(1, 7, 5);
+
+    const iter = sortedTree.breadthFirstIter();
+    expect(iter.next().value).to.equal(4);
+    expect(iter.next().value).to.equal(2);
+    expect(iter.next().value).to.equal(6);
+    expect(iter.next().value).to.equal(1);
+    expect(iter.next().value).to.equal(3);
+    expect(iter.next().value).to.equal(5);
+    expect(iter.next().value).to.equal(7);
+    expect(iter.next().done).to.equal(true);
+  });
 });

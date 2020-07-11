@@ -1,6 +1,7 @@
 import {Maybe} from './Maybe';
 import {Queue} from './Queue';
 import {Stack} from './Stack';
+import {CompareFn} from './Compare';
 
 export class BinaryTree<T>  {
   protected tree: Array<T> = [];
@@ -83,5 +84,69 @@ export class BinaryTree<T>  {
     for (const node of this.tree) {
       yield node;
     }
+  }
+
+  optimise(compareFn: CompareFn<T>): BinarySearchTree<T> {
+    return new BinarySearchTree(this, compareFn);
+  }
+}
+
+
+export class BinarySearchTree<T> extends BinaryTree<T> {
+  public constructor(binary_tree: BinaryTree<T>, private compareFn: CompareFn<T>) {
+    super();
+    this.tree = [...(binary_tree as any).tree];
+    this.sort();
+  }
+
+  sort(): void {
+    if (this.tree.length === 0) {
+      return;
+    }
+
+    this.tree.sort(this.compareFn);
+    const newTree = [];
+    const queueOfSplits = new Queue<Array<T>>();
+    queueOfSplits.enqueue(this.tree)
+
+    while (queueOfSplits.peek() !== undefined) {
+      const nextArrayPart = queueOfSplits.dequeue() as Array<T>;
+      const centerPoint = Math.floor(nextArrayPart.length / 2);
+      newTree.push(nextArrayPart[centerPoint]);
+      if(centerPoint > 0) {
+        let left = nextArrayPart.slice(0, centerPoint);
+        queueOfSplits.enqueue(left);
+      }
+      if(centerPoint + 1 < nextArrayPart.length) {
+        let right = nextArrayPart.slice(centerPoint + 1);
+        queueOfSplits.enqueue(right);
+      }
+    }
+
+    this.tree = newTree;
+  }
+
+  public add(...items: T[]): void {
+    super.add(...items);
+    this.sort();
+  }
+
+  public contains(item: T): boolean {
+    if (this.tree.length === 0) {
+      return false
+    }
+
+    let currentNode: Maybe<number> = 0;
+    while(currentNode !== undefined) {
+      if (this.tree[currentNode] === item) { // Found it
+        return true;
+      }
+      if (this.tree[currentNode] > item) { // current node bigger, go left
+        currentNode = this.leftOfIndex(currentNode);
+      } else {
+        currentNode = this.rightOfIndex(currentNode) // current node smaller, go right
+      }
+    }
+    return false;
   }
 }
