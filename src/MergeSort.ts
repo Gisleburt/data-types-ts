@@ -1,11 +1,11 @@
 export const mergeSort: <T>(arr: Array<T>) => Array<T> = (arr) => {
-  const left = arr.slice(0, Math.ceil(arr.length / 2));
-  const right = arr.slice(Math.ceil(arr.length / 2));
+  let left = arr.slice(0, Math.ceil(arr.length / 2));
+  let right = arr.slice(Math.ceil(arr.length / 2));
   if(left.length > 1) {
-    mergeSort(left);
+    left = mergeSort(left);
   }
   if(right.length > 1) {
-    mergeSort(right);
+    right = mergeSort(right);
   }
 
   return merge(left, right);
