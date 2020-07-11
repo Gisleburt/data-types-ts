@@ -1,4 +1,4 @@
-import { expect } from "chai";
+import {expect} from 'chai';
 import {mergeSort} from './MergeSort';
 
 describe('mergeSort', () => {

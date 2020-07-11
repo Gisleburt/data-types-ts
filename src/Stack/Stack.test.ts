@@ -1,4 +1,4 @@
-import {expect} from "chai";
+import {expect} from 'chai';
 import {Stack} from './Stack';
 
 describe('Stack', () => {

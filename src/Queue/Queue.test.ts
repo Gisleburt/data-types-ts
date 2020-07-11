@@ -1,6 +1,5 @@
 import {Queue} from './Queue';
-import {expect} from "chai";
-import {Stack} from './Stack';
+import {expect} from 'chai';
 
 describe('Queue', () => {
   it('should allow you to enqueue and dequeue', () => {

@@ -1,9 +1,9 @@
-import {Maybe} from './Maybe';
-import {Queue} from './Queue';
-import {Stack} from './Stack';
-import {CompareFn} from './Compare';
+import {Maybe} from '../Maybe';
+import {Queue} from '../Queue/Queue';
+import {Stack} from '../Stack/Stack';
+import {CompareFn} from '../Compare';
 
-export class BinaryTree<T>  {
+export class BinaryTree<T> {
   protected tree: Array<T> = [];
 
   add(...items: Array<T>) {

@@ -1,5 +1,5 @@
-import {CompareFn} from './Compare';
-import { expect } from 'chai';
+import {CompareFn} from '../Compare';
+import {expect} from 'chai';
 import {Heap} from './Heap';
 
 describe('Heap', () => {

@@ -1,4 +1,4 @@
-import {Maybe} from './Maybe';
+import {Maybe} from '../Maybe';
 
 export class ListNode<T> {
   constructor(public value: T, protected child?: ListNode<T>) {

@@ -1,4 +1,4 @@
-import {Maybe} from './Maybe';
+import {Maybe} from '../Maybe';
 
 export class Queue<T> {
   private list: Array<T> = [];

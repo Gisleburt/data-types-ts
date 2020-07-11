@@ -1,5 +1,5 @@
 import {HashMap} from './HashMap';
-import { expect } from 'chai';
+import {expect} from 'chai';
 
 describe('HashMap', () => {
   it('should store and retrieve with normal keys', () => {

@@ -1,4 +1,4 @@
-import {Maybe} from './Maybe';
+import {Maybe} from '../Maybe';
 
 class HashMapNode<K, V> {
   constructor(public key: K, public value: V) {}

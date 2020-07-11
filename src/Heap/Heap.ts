@@ -1,6 +1,6 @@
-import {CompareFn} from './Compare';
-import {BinaryTree} from './BinaryTree';
-import {Maybe} from './Maybe';
+import {CompareFn} from '../Compare';
+import {BinaryTree} from '../BinaryTree/BinaryTree';
+import {Maybe} from '../Maybe';
 
 export class Heap<T> extends BinaryTree<T> {
   constructor(protected compareFn: CompareFn<T>) {

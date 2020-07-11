@@ -1,5 +1,5 @@
 import {LinkedList, ListNode} from './LinkedList';
-import { expect } from 'chai';
+import {expect} from 'chai';
 
 describe('LinkedList', () => {
   it('should prepend values to the start of the list', () => {

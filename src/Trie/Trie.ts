@@ -1,5 +1,5 @@
-import {HashMap} from './HashMap';
-import {Maybe} from './Maybe';
+import {HashMap} from '../HashMap/HashMap';
+import {Maybe} from '../Maybe';
 
 class TrieNode<T> {
   public children: HashMap<T, TrieNode<T>> = new HashMap<T, TrieNode<T>>();
@@ -7,7 +7,7 @@ class TrieNode<T> {
 
   protected addChild(value: T, completesWord: boolean): TrieNode<T> {
     const existingChild = this.children.get(value);
-    if(existingChild) {
+    if (existingChild) {
       existingChild.completesWord = existingChild.completesWord || completesWord;
       return existingChild;
     }
