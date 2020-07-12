@@ -15,6 +15,10 @@ export class Queue<T> {
     return this.list[0];
   }
 
+  isEmpty(): boolean {
+    return this.list.length === 0;
+  }
+
   *iter(): IterableIterator<T> {
     while(this.peek() !== undefined) {
       yield this.dequeue()!;

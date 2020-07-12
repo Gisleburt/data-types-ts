@@ -60,4 +60,20 @@ describe('Queue', () => {
     expect(numberIter.next().value).to.equal(0);
     expect(numberIter.next().done).to.equal(true);
   });
+
+  it('should know when the queue is empty', () => {
+    const booleanQueue = new Queue();
+
+    expect(booleanQueue.isEmpty()).to.be.true;
+    booleanQueue.enqueue(true);
+    booleanQueue.enqueue(false);
+    expect(booleanQueue.isEmpty()).to.be.false;
+
+    const booleanIter = booleanQueue.iter();
+    expect(booleanIter.next().value).to.equal(true);
+    expect(booleanIter.next().value).to.equal(false);
+    expect(booleanIter.next().done).to.equal(true);
+
+    expect(booleanQueue.isEmpty()).to.be.true;
+  });
 });
