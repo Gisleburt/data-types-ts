@@ -92,7 +92,7 @@ export class BinaryTree<T> {
 }
 
 
-export class BinarySearchTree<T> extends BinaryTree<T> {
+class BinarySearchTree<T> extends BinaryTree<T> {
   public constructor(binary_tree: BinaryTree<T>, private compareFn: CompareFn<T>) {
     super();
     this.tree = [...(binary_tree as any).tree];
@@ -148,5 +148,38 @@ export class BinarySearchTree<T> extends BinaryTree<T> {
       }
     }
     return false;
+  }
+
+  public *iter() {
+    const stack = new Stack();
+    stack.push(0);
+
+    while (stack.peek() !== undefined) {
+      // Without removing the current from the stack, follow the left branch
+      let left = this.leftOfIndex(stack.peek() as number);
+      if (left !== undefined) {
+        stack.push(left);
+        continue;
+      }
+
+      // Once there are no more lefts, go back up the tree yielding the current node until there is a right branch
+      while(this.rightOfIndex(stack.peek() as number) === undefined) {
+        const current = stack.pop() as number;
+        if (current === undefined) {
+          return;
+        }
+        yield this.tree[current];
+      }
+
+      // Once a right branch is found pop the parent and start down that branch
+      const current = stack.pop() as number;
+
+      const right = this.rightOfIndex(current);
+      if(right !== undefined) {
+        stack.push(right);
+      }
+
+      yield this.tree[current];
+    }
   }
 }

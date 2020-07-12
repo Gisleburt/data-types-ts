@@ -140,4 +140,22 @@ describe('BinaryTree', () => {
     expect(iter.next().value).to.equal(7);
     expect(iter.next().done).to.equal(true);
   });
+
+  it('should produce an iterator across the tree', () => {
+
+    const binaryTree = new BinaryTree<number>();
+    binaryTree.add(3, 2, 4, 6, 1, 7, 8, 5);
+    const sortedTree = binaryTree.optimise((a, b) => (a - b));
+
+    const iter = sortedTree.iter();
+    expect(iter.next().value).to.equal(1);
+    expect(iter.next().value).to.equal(2);
+    expect(iter.next().value).to.equal(3);
+    expect(iter.next().value).to.equal(4);
+    expect(iter.next().value).to.equal(5);
+    expect(iter.next().value).to.equal(6);
+    expect(iter.next().value).to.equal(7);
+    expect(iter.next().value).to.equal(8);
+    expect(iter.next().done).to.equal(true);
+  });
 });
