@@ -15,6 +15,10 @@ export class Stack<T> {
     return this.list[this.list.length - 1];
   }
 
+  isEmpty(): boolean {
+    return this.peek() === undefined;
+  }
+
   *iter(): IterableIterator<T> {
     while(this.peek() !== undefined) {
       yield this.pop()!;

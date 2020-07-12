@@ -154,7 +154,7 @@ class BinarySearchTree<T> extends BinaryTree<T> {
     const stack = new Stack();
     stack.push(0);
 
-    while (stack.peek() !== undefined) {
+    while (!stack.isEmpty()) {
       // Without removing the current from the stack, follow the left branch
       let left = this.leftOfIndex(stack.peek() as number);
       if (left !== undefined) {
@@ -164,11 +164,11 @@ class BinarySearchTree<T> extends BinaryTree<T> {
 
       // Once there are no more lefts, go back up the tree yielding the current node until there is a right branch
       while(this.rightOfIndex(stack.peek() as number) === undefined) {
-        const current = stack.pop() as number;
-        if (current === undefined) {
+        yield this.tree[stack.pop() as number];
+        // Return if the stack is empty, we're done
+        if(stack.isEmpty()) {
           return;
         }
-        yield this.tree[current];
       }
 
       // Once a right branch is found pop the parent and start down that branch

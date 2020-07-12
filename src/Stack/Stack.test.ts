@@ -61,4 +61,20 @@ describe('Stack', () => {
     expect(numberIter.next().value).to.equal(1);
     expect(numberIter.next().done).to.equal(true);
   });
+
+  it('should know when the stack is empty', () => {
+    const booleanStack = new Stack();
+
+    expect(booleanStack.isEmpty()).to.be.true;
+    booleanStack.push(true);
+    booleanStack.push(false);
+    expect(booleanStack.isEmpty()).to.be.false;
+
+    const booleanIter = booleanStack.iter();
+    expect(booleanIter.next().value).to.equal(false);
+    expect(booleanIter.next().value).to.equal(true);
+    expect(booleanIter.next().done).to.equal(true);
+
+    expect(booleanStack.isEmpty()).to.be.true;
+  });
 });
