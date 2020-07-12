@@ -20,7 +20,7 @@ export class Stack<T> {
   }
 
   *iter(): IterableIterator<T> {
-    while(this.peek() !== undefined) {
+    while(!this.isEmpty()) {
       yield this.pop()!;
     }
   }
