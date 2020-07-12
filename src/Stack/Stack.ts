@@ -16,7 +16,7 @@ export class Stack<T> {
   }
 
   isEmpty(): boolean {
-    return this.peek() === undefined;
+    return this.list.length === 0;
   }
 
   *iter(): IterableIterator<T> {
